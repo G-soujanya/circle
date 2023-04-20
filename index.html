@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas id="mycanvas"></canvas>
+    <script>
+        const canvas=document.getElementById("mycanvas");
+        let hex=['0','1','2','3','4','5','6','7','8','9','A','B','C','E','F'];      
+        canvas.width=window.innerWidth;
+        canvas.height=window.innerHeight;
+        const ctx=canvas.getContext("2d");
+        let mouse={
+            x:undefined,
+            y:undefined,
+        };
+        function rc(){
+            let color="#";
+            for(let i=0;i<6;i++){
+                color+=hex[Math.floor(Math.random()*16)]
+            }
+            return color;
+        }
+    
+        canvas.addEventListener("click",(e)=>{
+            mouse.x=e.x;
+            mouse.y=e.y;
+            ctx.beginPath();
+            ctx.arc(mouse.x,mouse.y,50,0,Math.PI*2);
+            ctx.lineWidth=1;
+            ctx.fillStyle=rc();
+            ctx.fill();
+            ctx.strokeStyle=rc();
+            ctx.stroke();
+        });
+
+    </script>
+</body>
+</html>
